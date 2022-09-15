@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+
+<body style="background-color: rgb(135, 135, 181);">
+    <h1 style="text-align:center ;margin-bottom:50px">Marksheet Assignment-2</h1>
+    <h4 style="text-align:center ;margin-bottom:50px">Kiran Patil Roll No - 46</h4>
+
+    <div class="container d-flex flex-row justify-content-center align-items-center ">
+
+        <div class="mb-3 mx-3">
+            <label for="exampleInputEmail1" class="form-label">Student Name : </label>
+            <input type="string" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+
+        </div>
+        <div class="mb-3  mx-3">
+            <label for="exampleInputPassword1" class="form-label">Seat NO :</label>
+            <input type="number" class="form-control" id="exampleInputPassword1">
+        </div>
+    </div>
+    <div class="border border-dark border-2 container mx-auto">
+    <div class=" container d-flex flex-row justify-content-center align-items-center ">
+        <div class=" mb-3 mx-3">
+        <label for="exampleInputEmail1" class="form-label"> Engineering Mathematics-4: </label>
+        <input type="number" class="form-control" id="M" aria-describedby="emailHelp" onchange="passOrFail('M')">
+
+    </div>
+    <div class="mb-3  mx-3">
+        <label for="exampleInputPassword1" class="form-label"> Operating System :</label>
+        <input type="number" class="form-control" id="os" onchange="passOrFail('os')">
+    </div>
+    <div class="mb-3 mx-3">
+        <label for="exampleInputEmail1" class="form-label"> Computer Organization Archietecture : </label>
+        <input type="number" class="form-control" id="COA" aria-describedby="emailHelp" onchange="passOrFail('COA')">
+
+    </div>
+    </div>
+    <div class="container d-flex flex-row justify-content-center align-items-center ">
+        <div class="mb-3 mx-3">
+            <label for="exampleInputPassword1" class="form-label"> Computer Network :</label>
+            <input type="number" class="form-control" id="CN" onchange="passOrFail('CN')">
+        </div>
+        <div class="mb-3 mx-3">
+            <label for="exampleInputPassword1" class="form-label"> Automata Theory:</label>
+            <input type="number" class="form-control" id="AT" onchange="passOrFail('AT')">
+        </div>
+    </div>
+    </div>
+    <!-- <div  class="btn btn-primary d-flex justify-content-center align-items-center">
+            <button onclick="Successful()" class="btn btn-primary" >Submit</button> -->
+    <div class="mt-4 container d-flex flex-row justify-content-center align-items-center ">
+        <button class="btn btn-info" onclick="Successful()">Submit</button>
+
+    </div>
+
+    <br>
+    <br>
+    <p id="final" class="text-center"></p>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <script>
+
+        function passOrFail(sub) {
+
+            element = document.getElementById(sub);
+            value = element.value;
+
+
+            if (value < 0 || value > 100) {
+                alert("Enter the valid marks !!");
+
+
+            }
+            else {
+
+                if (element.value < 29) {
+                    string = element.value.toString() + " F";
+                    element.setAttribute("type", "text");
+                    element.value = string;
+
+                }
+                if (element.value == 29) {
+                    string = element.value.toString() + "@3";
+                    element.setAttribute("type", "text");
+                    element.value = string;
+                }
+
+                if (element.value == 30) {
+                    string = element.value.toString() + "@2";
+                    element.setAttribute("type", "text");
+                    element.value = string;
+                }
+
+                if (element.value == 31) {
+                    string = element.value.toString() + "@1";
+                    element.setAttribute("type", "text");
+                    element.value = string;
+                }
+
+                if (element.value >= 32) {
+                    string = element.value.toString() + " P";
+                    element.setAttribute("type", "text");
+                    element.value = string;
+                }
+            }
+        }
+
+        Successful = () => {
+
+            cn = document.getElementById("CN");
+            os = document.getElementById("os");
+            at = document.getElementById("AT");
+            coa = document.getElementById("COA");
+            maths = document.getElementById("M");
+            fin = document.getElementById("final");
+            // cn = document.getElementById("maths");
+            let totalgrades =
+                parseFloat(os.value) +
+                parseFloat(cn.value) +
+                parseFloat(at.value) +
+                parseFloat(maths.value) + parseFloat(coa.value);
+
+            // Checking the condition for the providing the 
+            // grade to student based on percentage
+            let percentage = (totalgrades / 500) * 100;
+
+
+            fin.innerHTML = ` <h4>You got ${parseInt(percentage)} &#37;</h4>`;
+
+            if (cn.value == "" | os.value == "" | maths.value == "" | coa.value == "" | at.value == "") {
+                alert("Please enter all the details !")
+            }
+            // else {
+            //     alert(` You got ${percentage} `);
+            // }
+        }
+
+    </script>
+</body>
+
+</html>
